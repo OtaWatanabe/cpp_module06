@@ -4,6 +4,10 @@ int main() {
 	std::srand(0);
 	for (int i = 0; i < 10; ++i) {
 		Base	*base = generate();
+		if (base == NULL) {
+			std::cerr << "memory allocation error" << std::endl;
+			return 0;
+		}
 		identify(base);
 		identify(*base);
 		delete base;

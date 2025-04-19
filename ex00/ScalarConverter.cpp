@@ -7,7 +7,8 @@ void	ScalarConverter::printMessage(const std::string& type, const std::string& m
 }
 
 void	ScalarConverter::printChar(char c) {
-	std::cout << "char: '" << c << '\'' << std::endl;
+	if (std::isprint(c)) std::cout << "char: '" << c << '\'' << std::endl;
+	else printMessage("char", "Non displayable");
 }
 
 void	ScalarConverter::printInt(int i) {
@@ -35,40 +36,14 @@ void	ScalarConverter::printDouble(double d) {
 }
 
 void	ScalarConverter::convertInt(int i) {
-	char	c;
-
-	c = static_cast<char>(i);
-	if (std::isprint(c)) printChar(c);
-	else printMessage("char", "Non displayable");
+	printChar(static_cast<char>(i));
 	printInt(i);
 	printFloat(static_cast<float>(i));
 	printDouble(static_cast<double>(i));
 }
 
-void	ScalarConverter::convertFloat(float f) {
-	char	c;
-	int		i;
-
-	if (static_cast<float>(std::numeric_limits<int>::max() < f) ||
-		(f < static_cast<float>(std::numeric_limits<int>::min())) ||
-		isnan(f)) {
-		printMessage("char", "impossible");
-		printMessage("int", "impossible");
-	}
-	else {
-		i = static_cast<int>(f);
-		c = static_cast<char>(i);
-		if (std::isprint(c)) printChar(c);
-		else printMessage("char", "Non displayable");
-		printInt(i);
-	}
-	printFloat(f);
-	printDouble(static_cast<double>(f));
-}
-
 void	ScalarConverter::convertDouble(double d) {
 	int		i;
-	char	c;
 
 	if (static_cast<double>(std::numeric_limits<int>::max() < d) ||
 		(d < static_cast<double>(std::numeric_limits<int>::min())) ||
@@ -78,21 +53,11 @@ void	ScalarConverter::convertDouble(double d) {
 	}
 	else {
 		i = static_cast<int>(d);
-		c = static_cast<char>(i);
-		if (std::isprint(c)) printChar(c);
-		else printMessage("char", "Non displayable");
+		printChar(static_cast<char>(i));
 		printInt(i);
 	}
 	printFloat(static_cast<float>(d));
 	printDouble(d);
-}
-
-void	ScalarConverter::convertChar(char c) {
-	if (std::isprint(c)) printChar(c);
-	else printMessage("char", "Non displayable");
-	printInt(static_cast<int>(c));
-	printFloat(static_cast<float>(c));
-	printDouble(static_cast<double>(c));
 }
 
 void	ScalarConverter::convert(const std::string& input) {
@@ -121,12 +86,12 @@ void	ScalarConverter::convert(const std::string& input) {
 		float	f;
 		ss >> f;
 		if (!ss.fail() && ss.eof()) {
-			convertFloat(f);
+			convertDouble(static_cast<double>(f));
 			return ;
 		}
 	}
 	if (input.size() == 3 && input[0] == '\'' && input[2] == '\'') {
-		convertChar(input[1]);
+		convertInt(static_cast<int>(input[1]));
 		return ;
 	}
 	printMessage("char", "impossible");

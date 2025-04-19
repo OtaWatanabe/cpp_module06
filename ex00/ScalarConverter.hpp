@@ -10,9 +10,7 @@ class ScalarConverter {
 private:
 	ScalarConverter();
 	static void	convertInt(int i);
-	static void	convertFloat(float f);
 	static void	convertDouble(double d);
-	static void	convertChar(char c);
 	static void	printMessage(const std::string& type, const std::string& msg);
 	static void	printInt(int i);
 	static void	printFloat(float f);

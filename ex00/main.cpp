@@ -5,5 +5,4 @@ int	main(int argc, char *argv[]) {
 		std::cout << argv[i] << std::endl;
 		ScalarConverter::convert(std::string(argv[i]));
 	}
-	std::stringstream ss("10.0");
 }
