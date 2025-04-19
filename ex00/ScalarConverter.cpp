@@ -94,8 +94,14 @@ void	ScalarConverter::convert(const std::string& input) {
 		convertInt(static_cast<int>(input[1]));
 		return ;
 	}
-	printMessage("char", "impossible");
-	printMessage("int", "impossible");
-	printMessage("float", "impossible");
-	printMessage("double", "impossible");
+	else if (input == "inf" || input == "inff" || input == "+inf" ||
+		input == "+inff") convertDouble(1.0 / 0.0);
+	else if (input == "-inf" || input == "-inff") convertDouble(-1.0 / 0.0);
+	else if (input == "nan" || input == "nanf") convertDouble(0.0 / 0.0);
+	else {
+		printMessage("char", "impossible");
+		printMessage("int", "impossible");
+		printMessage("float", "impossible");
+		printMessage("double", "impossible");
+	}
 }
