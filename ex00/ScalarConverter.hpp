@@ -5,6 +5,7 @@
 # include <iostream>
 # include <cctype>
 # include <limits>
+# include <cmath>
 
 class ScalarConverter {
 private:

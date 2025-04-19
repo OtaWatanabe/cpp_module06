@@ -18,21 +18,21 @@ void identify(Base& p) {
 		(void)dynamic_cast<A&>(p);
 		std::cout << "Class A" << std::endl;
 	}
-	catch (const std::bad_cast &e) {
+	catch (const std::exception &e) {
 		(void)e;
 	}
 	try {
 		(void)dynamic_cast<B&>(p);
 		std::cout << "Class B" << std::endl;
 	}
-	catch (const std::bad_cast &e) {
+	catch (const std::exception &e) {
 		(void)e;
 	}
 	try {
 		(void)dynamic_cast<C&>(p);
 		std::cout << "Class C" << std::endl;
 	}
-	catch (const std::bad_cast &e) {
+	catch (const std::exception &e) {
 		(void)e;
 	}
 }

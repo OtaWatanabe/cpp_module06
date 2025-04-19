@@ -4,6 +4,7 @@
 # include "B.hpp"
 # include "C.hpp"
 # include <cstdlib>
+# include <exception>
 
 Base * generate(void);
 void identify(Base* p);

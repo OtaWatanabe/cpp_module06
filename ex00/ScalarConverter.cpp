@@ -16,8 +16,8 @@ void	ScalarConverter::printInt(int i) {
 }
 
 void	ScalarConverter::printFloat(float f) {
-	if (static_cast<float>(std::numeric_limits<int>::max() < f) ||
-		(f < static_cast<float>(std::numeric_limits<int>::min())) ||
+	if (static_cast<float>(std::numeric_limits<int>::max()) < f ||
+		f < static_cast<float>(std::numeric_limits<int>::min()) ||
 		static_cast<float>(static_cast<int>(f)) != f) {
 		std::cout << "float: " << f << 'f' << std::endl;
 		return ;
@@ -26,8 +26,8 @@ void	ScalarConverter::printFloat(float f) {
 }
 
 void	ScalarConverter::printDouble(double d) {
-	if (static_cast<double>(std::numeric_limits<int>::max() < d) ||
-		(d < static_cast<double>(std::numeric_limits<int>::min())) ||
+	if (static_cast<double>(std::numeric_limits<int>::max()) < d ||
+		d < static_cast<double>(std::numeric_limits<int>::min()) ||
 		static_cast<double>(static_cast<int>(d)) != d) {
 		std::cout << "double: " << d << std::endl;
 		return ;
@@ -47,7 +47,7 @@ void	ScalarConverter::convertDouble(double d) {
 
 	if (static_cast<double>(std::numeric_limits<int>::max() < d) ||
 		(d < static_cast<double>(std::numeric_limits<int>::min())) ||
-		isnan(d)) {
+		std::isnan(d)) {
 		printMessage("char", "impossible");
 		printMessage("int", "impossible");
 	}

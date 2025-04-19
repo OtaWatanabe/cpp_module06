@@ -1,7 +1,8 @@
 #ifndef SERIALIZER_HPP
 # define SERIALIZER_HPP
-# include <cstdint>
 # include "Data.hpp"
+
+typedef unsigned long long uintptr_t;
 
 class Serializer {
 private:
